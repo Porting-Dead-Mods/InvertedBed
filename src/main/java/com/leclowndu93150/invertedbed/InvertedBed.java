@@ -36,7 +36,8 @@ public class InvertedBed {
     // Creates a new Block with the id "examplemod:example_block", combining the namespace and path
     public static final DeferredBlock<Block> INVERTED_BED = BLOCKS.register("inverted_bed", () -> new BedFunctionality(DyeColor.RED, BlockBehaviour.Properties.of().destroyTime(0.3F).sound(SoundType.WOOD)));
 
-    public static final DeferredRegister<BlockEntityType<BedBE>> INVERTED_BED_E = BLOCKS.register("inverted_bed", () -> BlockEntityType.Builder.of(BedBE::new, ).build(null));
+    public static final DeferredRegister<BlockEntityType<?>> BLOCKENTITIES = DeferredRegister.create(BuiltInRegistries.BLOCK_ENTITY_TYPE,MODID);
+    public static final DeferredRegister<BlockEntityType<BedBE>> INVERTED_BED_E = BLOCKENTITIES.register("inverted_bed", () -> BlockEntityType.Builder.of(BedBE::new, INVERTED_BED).build(null));
 
 
 
