@@ -37,7 +37,7 @@ public class InvertedBed {
     public static final DeferredBlock<Block> INVERTED_BED = BLOCKS.register("inverted_bed", () -> new BedFunctionality(DyeColor.RED, BlockBehaviour.Properties.of().destroyTime(0.3F).sound(SoundType.WOOD)));
 
     public static final DeferredRegister<BlockEntityType<?>> BLOCKENTITIES = DeferredRegister.create(BuiltInRegistries.BLOCK_ENTITY_TYPE,MODID);
-    public static final DeferredRegister<BlockEntityType<BedBE>> INVERTED_BED_E = BLOCKENTITIES.register("inverted_bed", () -> BlockEntityType.Builder.of(BedBE::new, INVERTED_BED).build(null));
+    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<BedBE>> INVERTED_BED_E = BLOCKENTITIES.register("inverted_bed", () -> BlockEntityType.Builder.of(BedBE::new, INVERTED_BED.get()).build(null));
 
 
 
@@ -57,6 +57,8 @@ public class InvertedBed {
         ITEMS.register(modEventBus);
 
         CREATIVE_MODE_TABS.register(modEventBus);
+
+        BLOCKENTITIES.register(modEventBus);
 
     }
 
