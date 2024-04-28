@@ -3,11 +3,14 @@ package com.leclowndu93150.invertedbed;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
+import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.DropExperienceBlock;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
@@ -17,6 +20,10 @@ import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
+
+import java.util.function.Supplier;
+
+import static net.minecraft.world.item.Items.registerBlock;
 
 
 @Mod(Main.MODID)
@@ -33,9 +40,7 @@ public class Main {
     public static final DeferredBlock<Block> INVERTED_BED = BLOCKS.register("inverted_bed", () -> new InvertedBedBlock(DyeColor.RED, BlockBehaviour.Properties.of().destroyTime(0.3F).sound(SoundType.WOOD)));
 
     public static final DeferredRegister<BlockEntityType<?>> BLOCKENTITIES = DeferredRegister.create(BuiltInRegistries.BLOCK_ENTITY_TYPE,MODID);
-    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<InvertedBedBlockEntity>> INVERTED_BED_E = BLOCKENTITIES.register("inverted_bed", () -> BlockEntityType.Builder.of(InvertedBedBlockEntity::new, INVERTED_BED.get()).build(null));
-
-
+    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<InvertedBedBlockEntity>> INVERTED_BED_BE = BLOCKENTITIES.register("inverted_bed", () -> BlockEntityType.Builder.of(InvertedBedBlockEntity::new, INVERTED_BED.get()).build(null));
 
     public static final DeferredItem<BlockItem> INVERTED_BED_ITEM = ITEMS.registerSimpleBlockItem("inverted_bed", INVERTED_BED);
 
