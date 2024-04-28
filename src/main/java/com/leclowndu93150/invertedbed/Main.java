@@ -19,9 +19,9 @@ import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
 
-@Mod(InvertedBed.MODID)
+@Mod(Main.MODID)
 
-public class InvertedBed {
+public class Main {
     public static final String MODID = "invertedbed";
 
     public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(MODID);
@@ -30,7 +30,7 @@ public class InvertedBed {
     public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, MODID);
 
     // Creates a new Block with the id "examplemod:example_block", combining the namespace and path
-    public static final DeferredBlock<Block> INVERTED_BED = BLOCKS.register("inverted_bed", () -> new InvertedBedEvents(DyeColor.RED, BlockBehaviour.Properties.of().destroyTime(0.3F).sound(SoundType.WOOD)));
+    public static final DeferredBlock<Block> INVERTED_BED = BLOCKS.register("inverted_bed", () -> new InvertedBedBlock(DyeColor.RED, BlockBehaviour.Properties.of().destroyTime(0.3F).sound(SoundType.WOOD)));
 
     public static final DeferredRegister<BlockEntityType<?>> BLOCKENTITIES = DeferredRegister.create(BuiltInRegistries.BLOCK_ENTITY_TYPE,MODID);
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<InvertedBedBlockEntity>> INVERTED_BED_E = BLOCKENTITIES.register("inverted_bed", () -> BlockEntityType.Builder.of(InvertedBedBlockEntity::new, INVERTED_BED.get()).build(null));
@@ -46,7 +46,7 @@ public class InvertedBed {
             .displayItems((parameters, output) -> output.accept(INVERTED_BED_ITEM.get())).build());
 
 
-    public InvertedBed(IEventBus modEventBus) {
+    public Main(IEventBus modEventBus) {
 
         BLOCKS.register(modEventBus);
 

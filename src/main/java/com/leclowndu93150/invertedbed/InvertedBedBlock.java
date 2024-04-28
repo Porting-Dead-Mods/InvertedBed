@@ -9,9 +9,9 @@ import net.minecraft.world.level.block.BedBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.Nullable;
 
-public class InvertedBedEvents extends BedBlock {
+public class InvertedBedBlock extends BedBlock {
 
-    public InvertedBedEvents(DyeColor p_49454_, Properties p_49455_) {
+    public InvertedBedBlock(DyeColor p_49454_, Properties p_49455_) {
         super(p_49454_, p_49455_);
     }
 
