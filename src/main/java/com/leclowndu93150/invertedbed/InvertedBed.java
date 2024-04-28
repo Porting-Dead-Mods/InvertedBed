@@ -1,6 +1,5 @@
 package com.leclowndu93150.invertedbed;
 
-import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
@@ -12,15 +11,12 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
-import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
-
-import javax.swing.*;
 
 
 @Mod(InvertedBed.MODID)
@@ -34,10 +30,10 @@ public class InvertedBed {
     public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, MODID);
 
     // Creates a new Block with the id "examplemod:example_block", combining the namespace and path
-    public static final DeferredBlock<Block> INVERTED_BED = BLOCKS.register("inverted_bed", () -> new BedFunctionality(DyeColor.RED, BlockBehaviour.Properties.of().destroyTime(0.3F).sound(SoundType.WOOD)));
+    public static final DeferredBlock<Block> INVERTED_BED = BLOCKS.register("inverted_bed", () -> new InvertedBedEvents(DyeColor.RED, BlockBehaviour.Properties.of().destroyTime(0.3F).sound(SoundType.WOOD)));
 
     public static final DeferredRegister<BlockEntityType<?>> BLOCKENTITIES = DeferredRegister.create(BuiltInRegistries.BLOCK_ENTITY_TYPE,MODID);
-    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<BedBE>> INVERTED_BED_E = BLOCKENTITIES.register("inverted_bed", () -> BlockEntityType.Builder.of(BedBE::new, INVERTED_BED.get()).build(null));
+    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<InvertedBedBlockEntity>> INVERTED_BED_E = BLOCKENTITIES.register("inverted_bed", () -> BlockEntityType.Builder.of(InvertedBedBlockEntity::new, INVERTED_BED.get()).build(null));
 
 
 
