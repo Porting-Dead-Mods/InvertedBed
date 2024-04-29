@@ -76,7 +76,6 @@ public class InvertedBedRenderer implements BlockEntityRenderer<InvertedBedBlock
 
     @Override
     public void render(InvertedBedBlockEntity pBlockEntity, float pPartialTick, PoseStack pPoseStack, MultiBufferSource pBuffer, int pPackedLight, int pPackedOverlay) {
-        System.out.println("RENDERING BE");
         Material material = Sheets.BED_TEXTURES[pBlockEntity.getColor().getId()];
         Level level = pBlockEntity.getLevel();
         if (level != null) {
