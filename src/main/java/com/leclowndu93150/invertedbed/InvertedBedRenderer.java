@@ -124,9 +124,15 @@ public class InvertedBedRenderer implements BlockEntityRenderer<InvertedBedBlock
             boolean pFoot
     ) {
         pPoseStack.pushPose();
-        pPoseStack.translate(0.0F, 0.5625F, pFoot ? -1.0F : 0.0F);
+        pPoseStack.translate(0.0F, 0, pFoot ? -1.0F : 0.0F);
         pPoseStack.mulPose(Axis.XP.rotationDegrees(90.0F));
-        pPoseStack.mulPose(Axis.XN.rotationDegrees(180.0F));
+        if (pDirection.equals(Direction.EAST) || pDirection.equals(Direction.WEST)) {
+            pPoseStack.mulPose(Axis.XN.rotationDegrees(180.0F));
+            pPoseStack.translate(0, -1, 0);
+        } else {
+            pPoseStack.mulPose(Axis.YN.rotationDegrees(180.0F));
+            pPoseStack.translate(-1, 0, 0);
+        }
         pPoseStack.translate(0.5F, 0.5F, 0.5F);
         pPoseStack.mulPose(Axis.ZP.rotationDegrees(180.0F + pDirection.toYRot()));
         pPoseStack.translate(-0.5F, -0.5F, -0.5F);
