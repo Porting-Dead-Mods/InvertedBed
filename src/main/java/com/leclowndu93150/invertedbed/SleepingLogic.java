@@ -30,7 +30,9 @@ public class SleepingLogic {
 
     @SubscribeEvent
     public static void onBedCheck(SleepingLocationCheckEvent event) {
-        if (event.getEntity().level().getBlockState(event.getSleepingLocation()).getBlock().equals(INVERTED_BED))
+        if (event.getEntity().level().getBlockState(event.getSleepingLocation()).getBlock().equals(INVERTED_BED)) {
             event.setResult(Event.Result.ALLOW);
+        }
     }
+
 }
