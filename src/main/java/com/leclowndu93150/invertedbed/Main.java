@@ -1,16 +1,13 @@
 package com.leclowndu93150.invertedbed;
 
+import com.leclowndu93150.invertedbed.block.InvertedBedBlock;
+import com.leclowndu93150.invertedbed.block.InvertedBedBlockEntity;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
-import net.minecraft.util.valueproviders.UniformInt;
-import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.DyeColor;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.DropExperienceBlock;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
@@ -18,9 +15,10 @@ import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredHolder;
-import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.function.Supplier;
 
 import static net.minecraft.world.item.Items.registerBlock;
@@ -37,19 +35,49 @@ public class Main {
     public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, MODID);
 
     // Creates a new Block with the id "examplemod:example_block", combining the namespace and path
-    public static final DeferredBlock<Block> INVERTED_BED = BLOCKS.register("inverted_bed", () -> new InvertedBedBlock(DyeColor.RED, BlockBehaviour.Properties.of().destroyTime(0.3F).sound(SoundType.WOOD)));
+    public static final List<DeferredBlock<InvertedBedBlock>> INVERTED_BEDS = registerBeds();
 
-    public static final DeferredRegister<BlockEntityType<?>> BLOCKENTITIES = DeferredRegister.create(BuiltInRegistries.BLOCK_ENTITY_TYPE,MODID);
-    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<InvertedBedBlockEntity>> INVERTED_BED_BE = BLOCKENTITIES.register("inverted_bed", () -> BlockEntityType.Builder.of(InvertedBedBlockEntity::new, INVERTED_BED.get()).build(null));
-
-    public static final DeferredItem<BlockItem> INVERTED_BED_ITEM = ITEMS.registerSimpleBlockItem("inverted_bed", INVERTED_BED);
+    public static final DeferredRegister<BlockEntityType<?>> BLOCKENTITIES = DeferredRegister.create(BuiltInRegistries.BLOCK_ENTITY_TYPE, MODID);
+    public static final Supplier<BlockEntityType<InvertedBedBlockEntity>> INVERTED_BED =
+            BLOCKENTITIES.register("inverted_bed", () ->
+                    BlockEntityType.Builder.of(InvertedBedBlockEntity::new,
+                            bedsToArray(INVERTED_BEDS)).build(null));
 
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> INVERTED_TAB = CREATIVE_MODE_TABS.register("inverted_tab", () -> CreativeModeTab.builder()
             .title(Component.translatable("itemGroup.invertedbed"))
             .withTabsBefore(CreativeModeTabs.COMBAT)
-            .icon(() -> INVERTED_BED_ITEM.get().getDefaultInstance())
-            .displayItems((parameters, output) -> output.accept(INVERTED_BED_ITEM.get())).build());
+            .icon(() -> INVERTED_BEDS.get(14).toStack())
+            .displayItems((parameters, output) -> {
+                for (DeferredBlock<InvertedBedBlock> bedBlock : INVERTED_BEDS) {
+                    output.accept(bedBlock);
+                }
+            }).build());
 
+    private static List<DeferredBlock<InvertedBedBlock>> registerBeds() {
+        List<DeferredBlock<InvertedBedBlock>> bedBlocks = new ArrayList<>();
+        DyeColor[] values = DyeColor.values();
+        for (DyeColor color : values) {
+            bedBlocks.add(newBed(color));
+        }
+        return bedBlocks;
+    }
+
+    private static InvertedBedBlock[] bedsToArray(List<DeferredBlock<InvertedBedBlock>> bedBlocks) {
+        InvertedBedBlock[] blocks = new InvertedBedBlock[16];
+        int bedSize = bedBlocks.size();
+        for (int i = 0; i < bedSize; i++) {
+            blocks[i] = bedBlocks.get(i).value();
+        }
+        return blocks;
+    }
+
+    private static DeferredBlock<InvertedBedBlock> newBed(DyeColor color) {
+        DeferredBlock<InvertedBedBlock> tempBlock = BLOCKS.register(color.getName() + "_inverted_bed", () -> new InvertedBedBlock(color, BlockBehaviour.Properties.of()
+                .destroyTime(0.3F)
+                .sound(SoundType.WOOD)));
+        ITEMS.registerSimpleBlockItem(color.getName()+"_inverted_bed", tempBlock);
+        return tempBlock;
+    }
 
     public Main(IEventBus modEventBus) {
 
@@ -62,8 +90,6 @@ public class Main {
         BLOCKENTITIES.register(modEventBus);
 
     }
-
-
 
 }
 

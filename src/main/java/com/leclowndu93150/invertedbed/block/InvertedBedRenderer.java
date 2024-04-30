@@ -1,11 +1,11 @@
-package com.leclowndu93150.invertedbed;
+package com.leclowndu93150.invertedbed.block;
 
+import com.leclowndu93150.invertedbed.Main;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Axis;
 import it.unimi.dsi.fastutil.ints.Int2IntFunction;
 import net.minecraft.client.model.geom.ModelLayerLocation;
-import net.minecraft.client.model.geom.ModelLayers;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.CubeListBuilder;
@@ -20,12 +20,8 @@ import net.minecraft.client.resources.model.Material;
 import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.BedBlock;
 import net.minecraft.world.level.block.ChestBlock;
 import net.minecraft.world.level.block.DoubleBlockCombiner;
-import net.minecraft.world.level.block.entity.BedBlockEntity;
-import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BedPart;
 
@@ -81,7 +77,7 @@ public class InvertedBedRenderer implements BlockEntityRenderer<InvertedBedBlock
         if (level != null) {
             BlockState blockstate = pBlockEntity.getBlockState();
             DoubleBlockCombiner.NeighborCombineResult<? extends InvertedBedBlockEntity> neighborcombineresult = DoubleBlockCombiner.combineWithNeigbour(
-                    Main.INVERTED_BED_BE.get(),
+                    Main.INVERTED_BED.get(),
                     InvertedBedBlock::getBlockType,
                     InvertedBedBlock::getConnectedDirection,
                     ChestBlock.FACING,
