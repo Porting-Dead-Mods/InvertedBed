@@ -1,0 +1,6 @@
+{
+  "parent": "invertedbed:inverted_bed",
+  "textures": {
+    "particle": "minecraft:block/yellow_wool"
+  }
+}
