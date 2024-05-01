@@ -1,6 +1,7 @@
 package com.leclowndu93150.invertedbed;
 
 import com.leclowndu93150.invertedbed.block.InvertedBedBlock;
+import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.bus.api.Event;
@@ -19,7 +20,7 @@ public class IBServerEvents {
         if (!event.getEntity().level().isClientSide()) {
             ServerLevel level = ((ServerLevel) event.getEntity().level());
             BlockState blockState = event.getEntity().level().getBlockState(event.getEntity().getSleepingPos().get());
-            if (blockState.getBlock() instanceof InvertedBedBlock)
+            if (blockState.getBlock() instanceof InvertedBedBlock && event.getEntity().getSleepTimer() >= 99)
                 level.setDayTime(13000);
         }
     }

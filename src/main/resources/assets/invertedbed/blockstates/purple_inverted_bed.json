@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "invertedbed:block/inverted_bed"
+    }
+  }
+}

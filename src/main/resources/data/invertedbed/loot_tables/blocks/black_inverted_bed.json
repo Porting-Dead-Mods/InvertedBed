@@ -1,0 +1,30 @@
+{
+    "type": "minecraft:block",
+    "pools": [
+        {
+            "bonus_rolls": 0,
+            "conditions": [
+                {
+                    "condition": "minecraft:survives_explosion"
+                }
+            ],
+            "entries": [
+                {
+                    "type": "minecraft:item",
+                    "name": "invertedbed:black_inverted_bed",
+                    "conditions": [
+                        {
+                            "condition": "minecraft:block_state_property",
+                            "block": "invertedbed:black_inverted_bed",
+                            "properties": {
+                                "part": "head"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "rolls": 1
+        }
+    ],
+    "random_sequence": "invertedbed:blocks/black_inverted_bed"
+}

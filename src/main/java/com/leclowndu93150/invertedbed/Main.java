@@ -8,6 +8,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.DyeColor;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
@@ -72,10 +73,9 @@ public class Main {
     }
 
     private static DeferredBlock<InvertedBedBlock> newBed(DyeColor color) {
-        DeferredBlock<InvertedBedBlock> tempBlock = BLOCKS.register(color.getName() + "_inverted_bed", () -> new InvertedBedBlock(color, BlockBehaviour.Properties.of()
-                .destroyTime(0.3F)
-                .sound(SoundType.WOOD)));
-        ITEMS.registerSimpleBlockItem(color.getName()+"_inverted_bed", tempBlock);
+        DeferredBlock<InvertedBedBlock> tempBlock = BLOCKS.register(color.getName() + "_inverted_bed",
+                () -> new InvertedBedBlock(color, BlockBehaviour.Properties.ofFullCopy(Blocks.RED_BED)));
+        ITEMS.registerSimpleBlockItem(color.getName() + "_inverted_bed", tempBlock);
         return tempBlock;
     }
 
