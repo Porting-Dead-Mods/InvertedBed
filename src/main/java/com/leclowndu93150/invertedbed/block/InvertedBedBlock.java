@@ -1,6 +1,7 @@
 package com.leclowndu93150.invertedbed.block;
 
 
+import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
@@ -10,6 +11,9 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.npc.Villager;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.DyeColor;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -67,7 +71,7 @@ public class InvertedBedBlock extends BedBlock {
     }
 
     @Override
-    public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
+    protected InteractionResult useWithoutItem(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, BlockHitResult p_49520_) {
         if (pLevel.isClientSide) {
             return InteractionResult.CONSUME;
         } else {
@@ -118,5 +122,11 @@ public class InvertedBedBlock extends BedBlock {
             list.get(0).stopSleeping();
             return true;
         }
+    }
+
+    @Override
+    public void appendHoverText(ItemStack p_49816_, Item.TooltipContext p_339606_, List<Component> pTooltip, TooltipFlag p_49819_) {
+        pTooltip.add(Component.translatable("block.invertedbed.inverted_bed.tooltip0").withStyle(ChatFormatting.DARK_GRAY));
+        pTooltip.add(Component.translatable("block.invertedbed.inverted_bed.tooltip1").withStyle(ChatFormatting.DARK_GRAY));
     }
 }

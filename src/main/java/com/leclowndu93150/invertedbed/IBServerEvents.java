@@ -6,6 +6,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.bus.api.Event;
 import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.event.entity.player.PlayerWakeUpEvent;
 import net.neoforged.neoforge.event.entity.player.SleepingLocationCheckEvent;
@@ -13,7 +14,7 @@ import net.neoforged.neoforge.event.entity.player.SleepingTimeCheckEvent;
 
 import static com.leclowndu93150.invertedbed.Main.MODID;
 
-@Mod.EventBusSubscriber(modid = MODID)
+@EventBusSubscriber(modid = MODID)
 public class IBServerEvents {
     @SubscribeEvent
     public static void onTrySleep(PlayerWakeUpEvent event) {

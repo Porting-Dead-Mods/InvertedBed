@@ -16,5 +16,7 @@
     "block.invertedbed.green_inverted_bed":"Green Inverted Bed",
     "block.invertedbed.black_inverted_bed":"Black Inverted Bed",
     "block.invertedbed.bed.not_possible_now": "You can sleep only at day",
+    "block.invertedbed.inverted_bed.tooltip0": "Allows sleeping on the day",
+    "block.invertedbed.inverted_bed.tooltip1": "Can be placed on the ceiling",
     "itemGroup.invertedbed":"Inverted Bed"
 }
