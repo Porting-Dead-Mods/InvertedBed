@@ -15,5 +15,6 @@
     "block.invertedbed.brown_inverted_bed":"Brown Inverted Bed",
     "block.invertedbed.green_inverted_bed":"Green Inverted Bed",
     "block.invertedbed.black_inverted_bed":"Black Inverted Bed",
+    "block.invertedbed.bed.not_possible_now": "You can sleep only at day",
     "itemGroup.invertedbed":"Inverted Bed"
 }

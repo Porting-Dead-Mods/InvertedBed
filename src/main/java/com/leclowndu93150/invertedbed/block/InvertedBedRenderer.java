@@ -92,14 +92,15 @@ public class InvertedBedRenderer implements BlockEntityRenderer<InvertedBedBlock
                     pBuffer,
                     blockstate.getValue(InvertedBedBlock.PART) == BedPart.HEAD ? this.headRoot : this.footRoot,
                     blockstate.getValue(InvertedBedBlock.FACING),
+                    blockstate.getValue(InvertedBedBlock.CEILING),
                     material,
                     i,
                     pPackedOverlay,
                     false
             );
         } else {
-            this.renderPiece(pPoseStack, pBuffer, this.headRoot, Direction.SOUTH, material, pPackedLight, pPackedOverlay, false);
-            this.renderPiece(pPoseStack, pBuffer, this.footRoot, Direction.SOUTH, material, pPackedLight, pPackedOverlay, true);
+            this.renderPiece(pPoseStack, pBuffer, this.headRoot, Direction.SOUTH, false, material, pPackedLight, pPackedOverlay, false);
+            this.renderPiece(pPoseStack, pBuffer, this.footRoot, Direction.SOUTH, false, material, pPackedLight, pPackedOverlay, true);
         }
     }
 
@@ -113,13 +114,18 @@ public class InvertedBedRenderer implements BlockEntityRenderer<InvertedBedBlock
             MultiBufferSource pBufferSource,
             ModelPart pModelPart,
             Direction pDirection,
+            boolean upsideDown,
             Material pMaterial,
             int pPackedLight,
             int pPackedOverlay,
             boolean pFoot
     ) {
         pPoseStack.pushPose();
-        pPoseStack.translate(0.0F, 0, pFoot ? -1.0F : 0.0F);
+        float y = 0;
+        if (upsideDown) {
+            y = 0.4375f;
+        }
+        pPoseStack.translate(0.0F, y, pFoot ? -1.0F : 0.0F);
         pPoseStack.mulPose(Axis.XP.rotationDegrees(90.0F));
         if (pDirection.equals(Direction.EAST) || pDirection.equals(Direction.WEST)) {
             pPoseStack.mulPose(Axis.XN.rotationDegrees(180.0F));
