@@ -1,7 +1,7 @@
-package com.leclowndu93150.invertedbed;
+package com.portingdeadmods.invertedbed;
 
-import com.leclowndu93150.invertedbed.block.InvertedBedBlock;
-import com.leclowndu93150.invertedbed.block.InvertedBedBlockEntity;
+import com.portingdeadmods.invertedbed.block.InvertedBedBlock;
+import com.portingdeadmods.invertedbed.block.InvertedBedBlockEntity;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
@@ -9,7 +9,6 @@ import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.neoforged.bus.api.IEventBus;

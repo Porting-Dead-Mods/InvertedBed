@@ -1,12 +1,12 @@
-package com.leclowndu93150.invertedbed;
+package com.portingdeadmods.invertedbed;
 
-import com.leclowndu93150.invertedbed.block.InvertedBedRenderer;
+import com.portingdeadmods.invertedbed.block.InvertedBedRenderer;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 
-import static com.leclowndu93150.invertedbed.Main.*;
+import static com.portingdeadmods.invertedbed.Main.*;
 
 @Mod.EventBusSubscriber(modid = Main.MODID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class IBClientEvents {

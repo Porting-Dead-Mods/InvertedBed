@@ -1,6 +1,6 @@
-package com.leclowndu93150.invertedbed.block;
+package com.portingdeadmods.invertedbed.block;
 
-import com.leclowndu93150.invertedbed.Main;
+import com.portingdeadmods.invertedbed.Main;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.world.item.DyeColor;
