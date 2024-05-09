@@ -1,7 +1,7 @@
-package com.leclowndu93150.invertedbed;
+package com.portingdeadmods.invertedbed;
 
-import com.leclowndu93150.invertedbed.block.InvertedBedBlock;
-import com.leclowndu93150.invertedbed.block.InvertedBedBlockEntity;
+import com.portingdeadmods.invertedbed.block.InvertedBedBlock;
+import com.portingdeadmods.invertedbed.block.InvertedBedBlockEntity;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;

@@ -1,4 +1,4 @@
-package com.leclowndu93150.invertedbed.block;
+package com.portingdeadmods.invertedbed.block;
 
 
 import net.minecraft.ChatFormatting;

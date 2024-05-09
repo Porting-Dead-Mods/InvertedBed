@@ -1,6 +1,6 @@
-package com.leclowndu93150.invertedbed.block;
+package com.portingdeadmods.invertedbed.block;
 
-import com.leclowndu93150.invertedbed.Main;
+import com.portingdeadmods.invertedbed.Main;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Axis;
