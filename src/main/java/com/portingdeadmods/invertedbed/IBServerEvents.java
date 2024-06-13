@@ -1,15 +1,15 @@
 package com.portingdeadmods.invertedbed;
 
 import com.portingdeadmods.invertedbed.block.InvertedBedBlock;
-import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
-import net.neoforged.bus.api.Event;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.event.entity.player.CanContinueSleepingEvent;
+import net.neoforged.neoforge.event.entity.player.CanPlayerSleepEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerWakeUpEvent;
-import net.neoforged.neoforge.event.entity.player.SleepingLocationCheckEvent;
-import net.neoforged.neoforge.event.entity.player.SleepingTimeCheckEvent;
 
 @EventBusSubscriber(modid = Main.MODID)
 public class IBServerEvents {
@@ -24,17 +24,23 @@ public class IBServerEvents {
     }
 
     @SubscribeEvent
-    public static void onCheckTime(SleepingTimeCheckEvent event) {
-        BlockState blockState = event.getEntity().level().getBlockState(event.getSleepingLocation().get());
-        if (blockState.getBlock() instanceof InvertedBedBlock)
-            event.setResult(event.getEntity().level().isDay() ? Event.Result.ALLOW : Event.Result.DENY);
+    public static void canStartSleep(CanPlayerSleepEvent event) {
+        BlockState blockState = event.getEntity().level().getBlockState(event.getPos());
+        if (blockState.getBlock() instanceof InvertedBedBlock) {
+            event.setProblem(event.getEntity().level().isDay()
+                    && (event.getVanillaProblem() == null
+                    || event.getVanillaProblem() == Player.BedSleepingProblem.NOT_POSSIBLE_NOW)
+                    ? null
+                    : Player.BedSleepingProblem.NOT_POSSIBLE_NOW);
+        }
     }
 
     @SubscribeEvent
-    public static void onBedCheck(SleepingLocationCheckEvent event) {
-        BlockState blockState = event.getEntity().level().getBlockState(event.getSleepingLocation());
+    public static void canContinueSleep(CanContinueSleepingEvent event) {
+        Level level = event.getEntity().level();
+        BlockState blockState = level.getBlockState(event.getEntity().getSleepingPos().get());
         if (blockState.getBlock() instanceof InvertedBedBlock)
-            event.setResult(Event.Result.ALLOW);
+            event.setContinueSleeping(level.isDay());
     }
 
 }

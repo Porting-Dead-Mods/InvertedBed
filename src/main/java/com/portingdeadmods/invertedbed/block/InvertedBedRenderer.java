@@ -28,8 +28,8 @@ import net.minecraft.world.level.block.state.properties.BedPart;
 public class InvertedBedRenderer implements BlockEntityRenderer<InvertedBedBlockEntity> {
     private final ModelPart headRoot;
     private final ModelPart footRoot;
-    public static final ModelLayerLocation BED_HEAD = new ModelLayerLocation(new ResourceLocation(Main.MODID, "bed_head"), "main");
-    public static final ModelLayerLocation BED_FOOT = new ModelLayerLocation(new ResourceLocation(Main.MODID, "bed_foot"), "main");
+    public static final ModelLayerLocation BED_HEAD = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(Main.MODID, "bed_head"), "main");
+    public static final ModelLayerLocation BED_FOOT = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(Main.MODID, "bed_foot"), "main");
 
     public InvertedBedRenderer(BlockEntityRendererProvider.Context pContext) {
         this.headRoot = pContext.bakeLayer(BED_HEAD);
