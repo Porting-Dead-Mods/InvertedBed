@@ -9,11 +9,11 @@
       "item": "minecraft:magenta_wool"
     },
     "P": {
-      "item": "minecraft:oak_planks"
+      "tag": "minecraft:planks"
     }
   },
   "result": {
-    "item": "invertedbed:magenta_inverted_bed",
+    "id": "invertedbed:magenta_inverted_bed",
     "count": 1
   }
 }

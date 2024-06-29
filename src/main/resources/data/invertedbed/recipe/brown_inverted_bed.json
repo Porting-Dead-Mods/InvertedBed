@@ -9,11 +9,11 @@
       "item": "minecraft:brown_wool"
     },
     "P": {
-      "item": "minecraft:oak_planks"
+      "tag": "minecraft:planks"
     }
   },
   "result": {
-    "item": "invertedbed:brown_inverted_bed",
+    "id": "invertedbed:brown_inverted_bed",
     "count": 1
   }
 }

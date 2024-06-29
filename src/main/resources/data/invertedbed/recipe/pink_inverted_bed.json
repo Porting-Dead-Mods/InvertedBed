@@ -1,19 +1,19 @@
 {
-    "type": "minecraft:crafting_shaped",
-    "pattern": [
-        "PPP",
-        "WWW"
-    ],
-    "key": {
-        "W": {
-            "item": "minecraft:pink_wool"
-        },
-        "P": {
-            "item": "minecraft:oak_planks"
-        }
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "PPP",
+    "WWW"
+  ],
+  "key": {
+    "W": {
+      "item": "minecraft:pink_wool"
     },
-    "result": {
-        "item": "invertedbed:pink_inverted_bed",
-        "count": 1
+    "P": {
+      "tag": "minecraft:planks"
     }
+  },
+  "result": {
+    "id": "invertedbed:pink_inverted_bed",
+    "count": 1
+  }
 }

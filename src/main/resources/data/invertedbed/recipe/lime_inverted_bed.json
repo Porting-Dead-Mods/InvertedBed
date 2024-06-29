@@ -9,11 +9,11 @@
       "item": "minecraft:lime_wool"
     },
     "P": {
-      "item": "minecraft:oak_planks"
+      "tag": "minecraft:planks"
     }
   },
   "result": {
-    "item": "invertedbed:lime_inverted_bed",
+    "id": "invertedbed:lime_inverted_bed",
     "count": 1
   }
 }
