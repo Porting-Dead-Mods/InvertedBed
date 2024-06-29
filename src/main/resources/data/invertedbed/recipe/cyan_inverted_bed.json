@@ -6,14 +6,14 @@
   ],
   "key": {
     "W": {
-      "item": "minecraft:blue_wool"
+      "item": "minecraft:cyan_wool"
     },
     "P": {
       "item": "minecraft:oak_planks"
     }
   },
   "result": {
-    "item": "invertedbed:blue_inverted_bed",
+    "id": "invertedbed:cyan_inverted_bed",
     "count": 1
   }
 }
