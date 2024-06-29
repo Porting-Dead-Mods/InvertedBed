@@ -1,6 +1,7 @@
 package com.portingdeadmods.invertedbed;
 
 import com.portingdeadmods.invertedbed.block.InvertedBedBlock;
+import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
@@ -10,6 +11,8 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.entity.player.CanContinueSleepingEvent;
 import net.neoforged.neoforge.event.entity.player.CanPlayerSleepEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerWakeUpEvent;
+
+import java.util.Optional;
 
 @EventBusSubscriber(modid = Main.MODID)
 public class IBServerEvents {
@@ -38,9 +41,12 @@ public class IBServerEvents {
     @SubscribeEvent
     public static void canContinueSleep(CanContinueSleepingEvent event) {
         Level level = event.getEntity().level();
-        BlockState blockState = level.getBlockState(event.getEntity().getSleepingPos().get());
-        if (blockState.getBlock() instanceof InvertedBedBlock)
-            event.setContinueSleeping(level.isDay());
+        Optional<BlockPos> optionalBlockPos = event.getEntity().getSleepingPos();
+        if (optionalBlockPos.isPresent()) {
+            BlockState blockState = level.getBlockState(optionalBlockPos.get());
+            if (blockState.getBlock() instanceof InvertedBedBlock)
+                event.setContinueSleeping(level.isDay());
+        }
     }
 
 }
